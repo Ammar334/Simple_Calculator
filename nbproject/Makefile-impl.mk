@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=application.X
+PROJECTNAME=Simple_Calculator
 
 # Active Configuration
 DEFAULTCONF=default

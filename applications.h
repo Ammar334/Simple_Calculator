@@ -14,7 +14,6 @@
 /*********Macro Declaration***********/
 extern lcd_4bit_t lcd_1;
 extern keypad_t kp1;
-extern led_t led_1;
 /*********Macro Function Declaration***********/
 #define DEBOUNE_TIME  200
 /*********Data Types Declaration***********/

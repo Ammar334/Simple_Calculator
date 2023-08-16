@@ -11,8 +11,9 @@ Std_ReturnType ret = E_NOT_OK;
 
 
 uint8 keypad_value=0;
-uint8 a[11];
+uint8 a[20];
 sint32 res=0;
+float32 result=0;
 uint8 num1[20]={0};
 uint8 num2[20]={0};
 uint8 l=0;
@@ -27,7 +28,7 @@ int main(){
         __delay_ms(DEBOUNE_TIME);
         if(keypad_value == '=')
         {
-            ret = lcd_4bit_send_char(&lcd_1,keypad_value);
+            ret = lcd_4bit_send_char_pos(&lcd_1,3,1,keypad_value);
             num1_counter = atoi(num1);
             num2_counter = atoi(num2);
             if(operatoin == '+' )
@@ -44,15 +45,23 @@ int main(){
             
             }else if(operatoin == '/' )
             {
-                res = num1_counter / num2_counter;
+                result = (float)num1_counter / (float)num2_counter;
                 
+            }
+            if( operatoin == '/')
+            {
+                sprintf(a, "%g", result);
+                ret = lcd_4bit_send_string_pos(&lcd_1, 3,3, a);
+            }
+            else
+            {
+                ret = convert_int_to_string(res,a);
+                ret = lcd_4bit_send_string_pos(&lcd_1, 3,3, a);
             }
             num1_counter=0;
             num2_counter=0;
             operatoin=0;
-            l=0;
-            ret = convert_int_to_string(res,a);
-            ret = lcd_4bit_send_string(&lcd_1,a);
+            l=0;  
             memset(num1,'\0',10);
             memset(num2,'\0',10);
             keypad_value=0;
